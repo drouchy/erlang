@@ -16,7 +16,7 @@ get_file(Server, File) ->
   end.
 
 put_file(Server, File) ->
-  Content = file:read_file(File),
+  {_, Content} = file:read_file(File),
   Server ! { self(), {put_file, File, Content}},
   receive
     { Server, Result} ->
